@@ -1,18 +1,28 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import styled from '@emotion/styled'
+import { Chessman } from './components/Сhessman'
 
-export const Cell = ({ number }) => {
-  const x = number % 8
-  const y = Math.floor(number / 8)
-  const black = (x + y) % 2 === 1
 
-  const Cell = styled.css`
+export const Cell = (props) => {
+
+  const { color, giveRef, x, y, } = props
+
+  const ref = useRef(null)
+  useEffect(() => {
+    giveRef(ref.current)
+
+  }, [])
+
+  const Cell = styled.div`
   width: 73px;
   height: 73px;
-  background:${black ? 'rgb(87, 70, 70)' : 'white'}
+  background:${color ? 'rgb(87, 70, 70)' : 'white'};
+  text-align: center;
 `
 
   return (
-    <Cell />
+    <Cell ref={ref} data-x={x} data-y={y} >
+      <Chessman x={x} y={y} />
+    </Cell >
   )
 }

@@ -24,7 +24,11 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
   },
   resolve: {
-    extensions: [".js", ".jsx", ".ts", ".tsx", ".json"]
+    extensions: [".js", ".jsx", ".ts", ".tsx", ".json"],
+    alias: {
+      pieces: path.resolve(__dirname, '/src/pieces/Knight.jsx'),
+      // Img: path.resolve(__dirname, 'src/img/'),
+    }
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -58,7 +62,21 @@ module.exports = {
         test: /\.ts(x)?$/,
         use: 'ts-loader',
         exclude: /node_modules/,
+      },
+      // {
+      //   test: /\.(png|svg|jpg|jpeg|gif)$/i,
+      //   type: 'asset/resource',
+      // },
+      {
+        test: /\.(jpg|png)$/,
+        use: {
+          loader: 'url-loader',
+        },
       }
+      // {
+      //   test: /\.(png|jpg|svg|gif)$/, // настройка форматов картинок, для которых будет применятся лоадер
+      //   use: ['file-loader'] // позволяет правильно интерпритировать импорт
+      // }
     ]
   }
 }
