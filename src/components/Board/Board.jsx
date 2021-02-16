@@ -2,23 +2,20 @@ import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import styled from '@emotion/styled'
 import { Cell } from './index'
-import { LOAD_BOARD } from '../../store/actions/actionTypes'
+import { setBoard } from '../../store/actions/board'
 
 export const Board = () => {
+
   const dispatch = useDispatch()
   const allRefs = []
 
   useEffect(() => {
-    dispatch({
-      type: LOAD_BOARD,
-      payload: allRefs
-    })
-
+    dispatch(setBoard(allRefs))
   }, []);
 
 
-  const refs = (value) => {
-    allRefs.push(value)
+  const refs = (refs) => {
+    allRefs.push(refs)
   }
 
   function renderSquare(i) {
@@ -42,7 +39,6 @@ export const Board = () => {
   for (let i = 0; i < 64; i++) {
     allCells.push(renderSquare(i))
   }
-
 
   return (
     <Board>

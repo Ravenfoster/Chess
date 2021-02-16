@@ -8,7 +8,7 @@
     "dev": "webpack",
     "test": "npx jest --verbose",
     "build": "cross-env NODE_ENV=production webpack --config webpack.config.js",
-    "start": "webpack serve"
+    "start": "cross-env NODE_ENV=development  webpack serve"
   },
   "author": "Evgeniy",
   "license": "ISC",
@@ -50,6 +50,7 @@
     "@emotion/styled": "^11.1.5",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "redux-thunk": "^2.3.0",
     "ts-node": "^9.1.1"
   }
 }
